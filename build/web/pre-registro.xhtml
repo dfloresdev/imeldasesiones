@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <body>
+
+        <ui:composition template="./templates/master.xhtml">
+
+            <ui:define name="contenido">
+                <h:form id="preregistroForm">
+                    <h:panelGrid columns="3" cellpadding="5">
+                        
+                        <f:facet name="header">
+                            Introduzca los datos
+                        </f:facet>
+                        
+                        <h:outputLabel value="Apellido paterno:" />
+                        <p:inputText id="a_paterno" label="apaterno" value="#{registro.ap}" placeholder="Introduzca apellido paterno"
+                                     required="true" requiredMessage="¡Apellido paterno, no puede estar vacio!">
+                            <f:validateLength minimum="3" maximum="20" />
+                        </p:inputText>
+                        <p:watermark for="a_paterno" value="Introduce Apellido Paterno" />
+
+                        <h:outputLabel value="Apellido materno:"/>
+                        <p:inputText id="a_materno" label="amaterno" value="#{registro.am}" placeholder="Introduzca apellido materno"
+                                     required="true" requiredMessage="¡Apellido materno, no puede estar vacio!">
+                            <f:validateLength minimum="3" maximum="20" />
+                        </p:inputText>
+                        <p:watermark for="a_materno" value="Introduce Apellido Materno" />
+
+                        <h:outputLabel value="Nombre:" />
+                        <p:inputText id="nombre" label="nombre" value="#{registro.nombre}" placeholder="Introduzca nombre"
+                                     required="true" requiredMessage="¡Nombre, no puede estar vacio!">
+                            <f:validateLength minimum="3" maximum="20" />
+                        </p:inputText>
+                        <p:watermark for="nombre" value="Introduce Nombre" />
+
+                        <h:outputLabel value="Correo electrónico:" />
+                        <p:inputText id="correo" label="correo" value="#{registro.email}" placeholder="Introduzca e-mail"
+                                     required="true" requiredMessage="¡E-mail, no puede estar vacio!" type="email">
+                            <f:validateLength minimum="3" maximum="35" />
+                        </p:inputText>
+                        <p:watermark for="correo" value="Introduce Correo Electronico" />
+
+                        <f:facet name="footer">
+                            <h:panelGrid columns="2" cellpadding="5">
+                                <p:commandButton id="enviar" value="Enviar" action="#{registro.registar()}" ajax="true"/>
+                                <p:commandButton value="Cancelar" />
+                            </h:panelGrid>
+                        </f:facet>
+
+                    </h:panelGrid>   
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
