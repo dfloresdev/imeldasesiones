@@ -121,8 +121,14 @@ public class RegistroBean {
             String pwd = generaPwdTemp(numAlea);
 
             userPojo = new UserstempPojo(ap, am, nombre, email, hash, 0, 0, pwd);
-
+            
+            
+            System.out.println("--------Me voy al Facade a crear usertemp ----------");
             userFacade.crearUserstemp(userPojo);
+            
+            System.out.println("----------------------------");
+            System.out.println("A continuacion el mensaje");
+            
             context.addMessage(cadena, new FacesMessage(FacesMessage.SEVERITY_INFO,
                     "Se ha creado el registro, se le enviara correo", "Registrado"));
 

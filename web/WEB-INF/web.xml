@@ -24,7 +24,7 @@
     <security-constraint>
         <display-name>nuevo</display-name>
         <web-resource-collection>
-            <web-resource-name>nuevo</web-resource-name>
+            <web-resource-name>Nuevo</web-resource-name>
             <description/>
             <url-pattern>/Nuevo</url-pattern>
         </web-resource-collection>
@@ -39,17 +39,15 @@
         </user-data-constraint>
     </security-constraint>
     <security-constraint>
-        <display-name>admin</display-name>
+        <display-name>Admin</display-name>
         <web-resource-collection>
-            <web-resource-name>amind</web-resource-name>
+            <web-resource-name>Admin</web-resource-name>
             <description/>
             <url-pattern>/Admin</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <description/>
             <role-name>admin</role-name>
-            <role-name>empleado</role-name>
-            <role-name>nuevo</role-name>
         </auth-constraint>
         <user-data-constraint>
             <description/>
@@ -59,7 +57,7 @@
     <security-constraint>
         <display-name>empleado</display-name>
         <web-resource-collection>
-            <web-resource-name>empleado</web-resource-name>
+            <web-resource-name>Empleado</web-resource-name>
             <description/>
             <url-pattern>/Empleado</url-pattern>
         </web-resource-collection>

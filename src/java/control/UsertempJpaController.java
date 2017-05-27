@@ -36,13 +36,14 @@ public class UsertempJpaController implements Serializable {
     public void create(Userstemp usertemp, UserTransaction utx) {
         EntityManager em = null;       
         
-        try {            
+        try {
+            System.out.println("============================================");
             System.out.println("crear usuario");
             em = getEntityManager();
             System.out.println("creo instancia");
             //em.getTransaction().begin();
             em.getTransaction().begin();
-            System.out.println(".begin");
+            System.out.println("se realizo el .begin");
             //System.out.println(usertemp);
             em.persist(usertemp);
             System.out.println("despues de persist");

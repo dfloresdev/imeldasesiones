@@ -15,7 +15,7 @@ import java.security.NoSuchAlgorithmException;
  */
 public class Encriptador {
 
-    private String encripta(String p) {
+    public String encripta(String p) {
         String llave = null;
         MessageDigest digest;
         byte[] hash;

@@ -27,8 +27,10 @@ public class UserstempFacade {
         usuario = new Userstemp();
         llenaDatosUserstemp (userPojo, usuario);
         try {
+            System.out.println("============================================");
             System.out.println("Me voy a Jpa a crear usuariotemp");
             userJpa.create(usuario, null);
+            System.out.println("============================================");
             System.out.println("creo usuario en jpa");
         } catch (Exception ex) {
             ex.printStackTrace();

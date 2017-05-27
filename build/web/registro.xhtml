@@ -8,6 +8,17 @@
 
     <body>
 
+        <!--        <f:metadata>
+                    <f:viewParam name="ap" value="#{alta.ap}" />
+                    <f:viewParam name="am" value="#{alta.am}" />
+                    <f:viewParam name="nom" value="#{alta.nombre}" />
+                    <f:viewParam name="co" value="#{alta.email}" />
+                </f:metadata>-->
+
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{alta.validaPagina()}" />
+        </f:metadata>
+
         <ui:composition template="./templates/master.xhtml">
 
             <ui:define name="contenido">
@@ -60,28 +71,28 @@
                         <p:outputPanel id="photo">
                             <p:graphicImage name="resources/images/#{photoCamView.filename}.jpeg" rendered="#{not empty photoCamView.filename}"/>
                         </p:outputPanel>
-                        
+
                         <h:outputLabel value="Usuario" />
                         <p:inputText id="usuario" label="usuario"
                                      required="true" requiredMessage="Usuario, no puede estar vacio">
                             <f:validateRegex pattern="^[a-zA-Z0-9]+$" />
                         </p:inputText>
                         <p:watermark for="usuario" value="Introduce Usuario" />
-                        
+
                         <h:outputLabel value="Contraseña" />
                         <p:inputText id="contrasenia" label="contraseña"
                                      required="true" requiredMessage="Contraseña, no puede estar vacio">
                             <f:validateRegex pattern="^[a-zA-Z0-9]+$" />
                         </p:inputText>
                         <p:watermark for="contrasenia" value="Introduce Contraseña" />
-                        
+
                         <h:outputLabel value="Confirme Contraseña" />
                         <p:inputText id="conf_contrasenia" label="confirme contraseña"
                                      required="true" requiredMessage="Confirme Contraseña, no puede estar vacio">
                             <f:validateRegex pattern="^[a-zA-Z0-9]+$" />
                         </p:inputText>
                         <p:watermark for="conf_contrasenia" value="Confirme Contraseña" />
-                        
+
                         <f:facet name="footer">
                             <h:panelGrid columns="2" cellpadding="5">
                                 <p:commandButton value="Guardar" />
