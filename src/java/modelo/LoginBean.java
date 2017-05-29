@@ -199,14 +199,14 @@ public class LoginBean {
                             if (request.isUserInRole("Admin")) {
                                 try {
                                     System.out.println("tratando de irme a la pagina");
-                                    ec.redirect(ec.getRequestContextPath() + "/faces/Admin");
+                                    ec.redirect(ec.getRequestContextPath() + "/faces/Admin/BienvenidoAdmin.xhtml");
                                 } catch (IOException es) {
 
                                 }
                             } else {
                                 if (request.isUserInRole("Empleado")) {
                                     try {
-                                        ec.redirect(ec.getRequestContextPath() + "/faces/Empleado");
+                                        ec.redirect(ec.getRequestContextPath() + "/faces/Empleado/BienvenidoE.xhtml");
                                     } catch (IOException ex) {
 
                                     }
@@ -341,6 +341,20 @@ public class LoginBean {
         FacesContext.getCurrentInstance().addMessage(null, 
                 new FacesMessage(FacesMessage.SEVERITY_WARN, "Bienvenido de regreso",
                 "continua con tu trabajo"));
+    }
+    
+    public void logout() throws IOException
+    {
+        FacesContext.getCurrentInstance().addMessage(
+                null, 
+                new FacesMessage(FacesMessage.SEVERITY_WARN,
+                "Has sido desconectado!",
+                "Debes iniciar sesión, nuevamente"));
+        ec.getFlash().setKeepMessages(true);
+        
+        FacesContext.getCurrentInstance().getExternalContext()
+                .invalidateSession();
+        ec.redirect(ec.getRequestContextPath() + "/faces/index.xhtml");
     }
     
 }

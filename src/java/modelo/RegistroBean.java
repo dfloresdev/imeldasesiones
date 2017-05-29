@@ -7,6 +7,7 @@ package modelo;
 
 import control.UserstempFacade;
 import control.UserstempPojo;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -17,12 +18,14 @@ import javax.annotation.Resource;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -174,6 +177,25 @@ public class RegistroBean {
         }
     }
 
+    public void validarPagina() throws IOException
+    {
+        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+        HttpSession session = (HttpSession) ec.getSession(false);
+        
+        //si se trata de abrir directamente con el url en la pestaña del navegador
+        if(session.getAttribute("preRegsitro") == null)
+        {
+            ec.redirect(ec.getRequestContextPath() + "/faces/index.xhtml");
+        }
+        
+        //sin embargo el valor guardado en el objeto session se sigue conservando
+        //ya que la session sigue siendo la misma
+        if(!(boolean)session.getAttribute("preRegistro"))
+        {
+            ec.redirect(ec.getRequestContextPath() + "/faces/index.xhtml");
+        }
+    }
+    
     public String getMySh() {
         return mySh;
     }

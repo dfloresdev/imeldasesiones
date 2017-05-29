@@ -44,7 +44,9 @@
                             </p:keyboard>
                             <p:watermark for="pwd" value="Introduce contraseña"/>
 
-                            <p:commandLink value="Registrarse" ajax="false" immediate="true" action="pre-registro.xhtml"/>
+                            <!--<p:commandLink value="Registrarse" ajax="false" immediate="true" action="pre-registro.xhtml"/>-->
+                            <!--<p:commandLink value="Registrarse" ajax="false" immediate="true" action="/Nuevo/Registro.xhtml"/>-->
+                            <p:commandLink value="Registrarse" ajax="false" immediate="true" action="#{loginBean.Registro()}"/>
 
                             <p:commandButton id="entrar" value="Entrar" update="login" style="float:right; background-color: lightblue" 
                                              action="#{loginBean.submit()}" ajax="false"/>
