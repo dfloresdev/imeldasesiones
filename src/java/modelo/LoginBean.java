@@ -153,10 +153,13 @@ public class LoginBean {
     }
 
     public String Registro() {
+        
+        System.out.println("---------------------- creando sesion y me voy a NUEVO/REGISTRO ---------------------");
+        
         session = (HttpSession) ec.getSession(false);
         session.setAttribute("preRegistro", true);
         sesionInactiva(180);
-        String cadena = "/Nuevo/Registro?faces-redirect=true";
+        String cadena = "/Nuevo/Registro.xhtml?faces-redirect=true";
         return cadena;
     }
 
@@ -166,7 +169,7 @@ public class LoginBean {
 
     public void submit() {
         FacesContext context = FacesContext.getCurrentInstance();
-
+        System.out.println("------------------- dio clic en Entrar --------------------------");
         if (mysh.isEmpty()) {
             System.out.println("Nombre de usuario recibido: " + login);
             System.out.println("Contraseña recibida: " + pwd);
@@ -174,14 +177,18 @@ public class LoginBean {
                 context.addMessage(null,
                         new FacesMessage(FacesMessage.SEVERITY_ERROR, "Los datos no son válidos", "Error"));
             } else {
+                System.out.println("------------------------- estoy activando al usuario -----------------");
                 activado = activarUsuario(email, hash, pwd);
                 if (activado) {
                     userPojo = userFacade.buscarUsuario(login, pwd);
+                    
+                    System.out.println("encontre el usuario, ahora voy al if" + userPojo + "-------------------------");
+                    
                     if (userPojo != null) {
 
                         //////////////////////// nuevo codigo ////////////////////////
                         activado = false;
-
+                        System.out.println("le voy a cambiar sesion para mayor seguridad");
                         cambiaSesion();
                         validado = true;
                         session = (HttpSession) ec.getSession(false);
@@ -213,7 +220,7 @@ public class LoginBean {
                                 } else {
                                     if (request.isUserInRole("Nuevo")) {
                                         try {
-                                            ec.redirect(ec.getRequestContextPath() + "/faces/Nuevo");
+                                            ec.redirect(ec.getRequestContextPath() + "/faces/Nuevo.xhtml");
                                         } catch (IOException ex) {
 
                                         }
@@ -257,11 +264,16 @@ public class LoginBean {
             return true;
         }
         if ((email != null) && (hash != null)) {
+            System.out.println("-------------- voy a buscarlo en usuarios temporales ------------");
             userstempPojo = userstempFacade.buscaUserstemp(email);
+            System.out.println("lo encontre: " + userstempPojo.getNombre() + "---------------------");
             if (userstempPojo != null) {
                 Encriptador e = new Encriptador();
                 String clave = e.encripta(pwd);
-                
+                System.out.println("--------------------------------------------");
+                System.out.println("clave del usuario temporal: " + userstempPojo.getPasswordTemp());
+                System.out.println("clave del usuario que ingreso datos: " + clave);
+                System.out.println("--------------------------------------------");
                 if(!clave.contentEquals(userstempPojo.getPasswordTemp()))
                 {
                     return true;
@@ -306,8 +318,8 @@ public class LoginBean {
                         session.setAttribute("co", co);
                         
                         System.out.println("me voy a alta");
-//                        ec.redirect(ec.getRequestContextPath() + "/faces/Nuevo/Alta.xhtml");
-                        ec.redirect(ec.getRequestContextPath() + "/faces/Nuevo/Registro.xhtml");
+                        ec.redirect(ec.getRequestContextPath() + "/faces/Nuevo/Alta.xhtml");
+//                        ec.redirect(ec.getRequestContextPath() + "/faces/Nuevo/Registro.xhtml");
                     }catch(IOException ex)
                     {
                         

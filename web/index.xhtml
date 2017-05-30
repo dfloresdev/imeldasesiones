@@ -16,7 +16,7 @@
         <ui:composition template="/templates/master.xhtml">
             <f:metadata>
                 <f:viewParam name="email" value="#{loginBean.email}" />
-                <f:viewParam name="email" value="#{loginBean.mysh}" />
+                <f:viewParam name="hash" value="#{loginBean.hash}" />
             </f:metadata>
 
             <ui:define name="contenido">
@@ -28,7 +28,7 @@
 
                         <h:panelGrid columns="3" cellpadding="5">
                             <h:outputLabel value="Usuario:"/>
-                            <p:inputText id="login" label="usuario" value="" required = "true" requiredMessage="Usurio, no puede estar vacio" validatorMessage="La longitud de usuario debe ser entre 3 y 8 y solo se permiten letras y/o numeros">
+                            <p:inputText id="login" label="usuario" value="#{loginBean.login}" required = "true" requiredMessage="Usurio, no puede estar vacio" validatorMessage="La longitud de usuario debe ser entre 3 y 8 y solo se permiten letras y/o numeros">
                                 <f:validateLength minimum="3" maximum="40"/>
                                 <!--<f:validateRegex pattern="^[a-zA-Z0-9]+$"/>-->
                                 <f:validateRegex pattern="^[A-Za-z0-9+_.-]+@(.+)$"/>
@@ -37,7 +37,7 @@
                             <p:watermark for="login" value="Introduce tu usuario"/>
 
                             <h:outputLabel value="Password"/>
-                            <p:keyboard id="pwd" label="contraseña" value="" required="true" requiredMessage="Contraseña, no puede estar vacio" validatorMessage="La longitud de la contraseña debe ser de 8 y solo se permiten letras y/o numeros" password="true">
+                            <p:keyboard id="pwd" label="contraseña" value="#{loginBean.pwd}" required="true" requiredMessage="Contraseña, no puede estar vacio" validatorMessage="La longitud de la contraseña debe ser de 8 y solo se permiten letras y/o numeros" password="true">
                                 <f:validateLength  minimum="4" maximum="28"/>
                                 <f:validateRegex pattern="^[a-zA-Z0-9]+$"/>
                                 <p:tooltip for="pwd" value="La cntraseña debe ser entre 4 y 28 caracteres y solo se permiten letras y/o numeros"/>
@@ -46,7 +46,7 @@
 
                             <!--<p:commandLink value="Registrarse" ajax="false" immediate="true" action="pre-registro.xhtml"/>-->
                             <!--<p:commandLink value="Registrarse" ajax="false" immediate="true" action="/Nuevo/Registro.xhtml"/>-->
-                            <p:commandLink value="Registrarse" ajax="false" immediate="true" action="#{loginBean.Registro()}"/>
+                            <p:commandLink value="Registrarse" ajax="false" immediate="true" action="#{loginBean.Registro()}" />
 
                             <p:commandButton id="entrar" value="Entrar" update="login" style="float:right; background-color: lightblue" 
                                              action="#{loginBean.submit()}" ajax="false"/>

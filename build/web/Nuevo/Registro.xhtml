@@ -29,91 +29,51 @@
 
 
         <ui:composition template="/templates/master_1.xhtml">
+
             <ui:define name="contenido">
-                <h:form id="registroForm">
-
-                    <f:metadata>
-                        <f:event type="preRenderView" listener="#{registro.validarPagina()}" />
-                    </f:metadata>
-
-                    <p:messages id="msjLoginForm" closable="true" />
-                    <p:panel id="loginPanel" styleClass="panelLogin" />
+                <h:form id="preregistroForm">
                     <h:panelGrid columns="3" cellpadding="5">
-
+                        
                         <f:facet name="header">
                             Introduzca los datos
                         </f:facet>
-
-                        <h:outputLabel value="Apellido Paterno" />
-                        <p:inputText id="a_paterno" label="apellido paterno"
-                                     required="true" requiredMessage="Apellido paterno, no puede estar vacio">
-                            <f:validateRegex pattern="^[a-zA-Z0-9]+$" />
+                        
+                        <h:outputLabel value="Apellido paterno:" />
+                        <p:inputText id="a_paterno" label="apaterno" value="#{registro.ap}" placeholder="Introduzca apellido paterno"
+                                     required="true" requiredMessage="¡Apellido paterno, no puede estar vacio!">
+                            <f:validateLength minimum="3" maximum="20" />
                         </p:inputText>
                         <p:watermark for="a_paterno" value="Introduce Apellido Paterno" />
 
-                        <h:outputLabel value="Apellido Materno" />
-                        <p:inputText id="a_materno" label="apellido materno"
-                                     required="true" requiredMessage="Apellido materno, no puede estar vacio">
-                            <f:validateRegex pattern="^[a-zA-Z0-9]+$" />
+                        <h:outputLabel value="Apellido materno:"/>
+                        <p:inputText id="a_materno" label="amaterno" value="#{registro.am}" placeholder="Introduzca apellido materno"
+                                     required="true" requiredMessage="¡Apellido materno, no puede estar vacio!">
+                            <f:validateLength minimum="3" maximum="20" />
                         </p:inputText>
                         <p:watermark for="a_materno" value="Introduce Apellido Materno" />
 
-                        <h:outputLabel value="Nombre" />
-                        <p:inputText id="nombre" label="nombre"
-                                     required="true" requiredMessage="Nombre, no puede estar vacio">
-                            <f:validateRegex pattern="^[a-zA-Z0-9]+$" />
+                        <h:outputLabel value="Nombre:" />
+                        <p:inputText id="nombre" label="nombre" value="#{registro.nombre}" placeholder="Introduzca nombre"
+                                     required="true" requiredMessage="¡Nombre, no puede estar vacio!">
+                            <f:validateLength minimum="3" maximum="20" />
                         </p:inputText>
                         <p:watermark for="nombre" value="Introduce Nombre" />
 
-                        <h:outputLabel value="Edad" />
-                        <p:inputText id="edad" label="edad"
-                                     required="true" requiredMessage="Edad, no puede estar vacio">
-                            <f:validateRegex pattern="^[0-9]+$" />
-                        </p:inputText>
-                        <p:watermark for="edad" value="Introduce Edad" />
-
-                        <h:outputLabel value="Correo Electronico" />
-                        <p:inputText id="correo" label="correo"
-                                     required="true" requiredMessage="Correo electronico, no puede estar vacio">
-                            <f:validateRegex pattern="^[a-zA-Z0-9]+$" />
+                        <h:outputLabel value="Correo electrónico:" />
+                        <p:inputText id="correo" label="correo" value="#{registro.email}" placeholder="Introduzca e-mail"
+                                     required="true" requiredMessage="¡E-mail, no puede estar vacio!" type="email">
+                            <f:validateLength minimum="3" maximum="35" />
                         </p:inputText>
                         <p:watermark for="correo" value="Introduce Correo Electronico" />
 
-                        <p:photoCam widgetVar="pc" listener="#{photoCamView.oncapture}" update="photo" />
-                        <p:commandButton type="button" value="Capture" onclick="PF('pc').capture()"/>
-                        <p:outputPanel id="photo">
-                            <p:graphicImage name="resources/images/#{photoCamView.filename}.jpeg" rendered="#{not empty photoCamView.filename}"/>
-                        </p:outputPanel>
-
-                        <h:outputLabel value="Usuario" />
-                        <p:inputText id="usuario" label="usuario"
-                                     required="true" requiredMessage="Usuario, no puede estar vacio">
-                            <f:validateRegex pattern="^[a-zA-Z0-9]+$" />
-                        </p:inputText>
-                        <p:watermark for="usuario" value="Introduce Usuario" />
-
-                        <h:outputLabel value="Contraseña" />
-                        <p:inputText id="contrasenia" label="contraseña"
-                                     required="true" requiredMessage="Contraseña, no puede estar vacio">
-                            <f:validateRegex pattern="^[a-zA-Z0-9]+$" />
-                        </p:inputText>
-                        <p:watermark for="contrasenia" value="Introduce Contraseña" />
-
-                        <h:outputLabel value="Confirme Contraseña" />
-                        <p:inputText id="conf_contrasenia" label="confirme contraseña"
-                                     required="true" requiredMessage="Confirme Contraseña, no puede estar vacio">
-                            <f:validateRegex pattern="^[a-zA-Z0-9]+$" />
-                        </p:inputText>
-                        <p:watermark for="conf_contrasenia" value="Confirme Contraseña" />
-
                         <f:facet name="footer">
                             <h:panelGrid columns="2" cellpadding="5">
-                                <p:commandButton value="Guardar" />
+                                <p:commandButton id="enviar" value="Enviar" action="#{registro.registar()}" ajax="true"/>
                                 <p:commandButton value="Cancelar" />
                             </h:panelGrid>
                         </f:facet>
 
-                    </h:panelGrid>
+                    </h:panelGrid>   
                 </h:form>
             </ui:define>
 

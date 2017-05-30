@@ -113,12 +113,14 @@ public class RegistroBean {
     }
 
     public String registar() {
-        System.out.println("metodo de registro");
+        System.out.println("--------------------------- voy a registrar a alguien nuevo -------------------");
         FacesContext context = FacesContext.getCurrentInstance();
         String cadena = null;
         userPojo = userFacade.buscaUserstemp(email);
 
         if (userPojo == null) {
+            System.out.println("---------------- este chavo es nuevo -------------------");
+            System.out.println("correo: " + email);
             String hash = generaHash();
             String numAlea = numAleatorio();
             String pwd = generaPwdTemp(numAlea);
@@ -134,8 +136,9 @@ public class RegistroBean {
             
             context.addMessage(cadena, new FacesMessage(FacesMessage.SEVERITY_INFO,
                     "Se ha creado el registro, se le enviara correo", "Registrado"));
-
+            
             enviarCorreo(email, numAlea, hash);
+            System.out.println("--------------------- correo enviado --------------------------------");
         } else {
             context.addMessage(cadena, new FacesMessage(FacesMessage.SEVERITY_INFO,
                     "Ya existe un usuario con ese correo, \n solicite olvidar contraseña en index", "error"));
@@ -186,6 +189,7 @@ public class RegistroBean {
         if(session.getAttribute("preRegsitro") == null)
         {
             ec.redirect(ec.getRequestContextPath() + "/faces/index.xhtml");
+//            ec.redirect(ec.getRequestContextPath() + "/Nuevo/Registro.xhtml");
         }
         
         //sin embargo el valor guardado en el objeto session se sigue conservando
@@ -193,6 +197,7 @@ public class RegistroBean {
         if(!(boolean)session.getAttribute("preRegistro"))
         {
             ec.redirect(ec.getRequestContextPath() + "/faces/index.xhtml");
+//            ec.redirect(ec.getRequestContextPath() + "/Nuevo/Registro.xhtml");
         }
     }
     
