@@ -8,12 +8,12 @@
 
     <body>
 
-        <!--        <f:metadata>
-                    <f:viewParam name="ap" value="#{alta.ap}" />
-                    <f:viewParam name="am" value="#{alta.am}" />
-                    <f:viewParam name="nom" value="#{alta.nombre}" />
-                    <f:viewParam name="co" value="#{alta.email}" />
-                </f:metadata>-->
+        <f:metadata>
+            <f:viewParam name="ap" value="#{alta.ap}" />
+            <f:viewParam name="am" value="#{alta.am}" />
+            <f:viewParam name="nom" value="#{alta.nombre}" />
+            <f:viewParam name="co" value="#{alta.email}" />
+        </f:metadata>
 
         <f:metadata>
             <f:event type="preRenderView" listener="#{alta.validaPagina()}" />
@@ -32,25 +32,25 @@
                         </f:facet>
 
                         <h:outputLabel value="Apellido Paterno" />
-                        <p:inputText id="a_paterno" label="apellido paterno"
+                        <p:inputText id="ap" label="apellido paterno"
                                      required="true" requiredMessage="Apellido paterno, no puede estar vacio">
                             <f:validateRegex pattern="^[a-zA-Z0-9]+$" />
                         </p:inputText>
-                        <p:watermark for="a_paterno" value="Introduce Apellido Paterno" />
+                        <p:watermark for="ap" value="Introduce Apellido Paterno" />
 
                         <h:outputLabel value="Apellido Materno" />
-                        <p:inputText id="a_materno" label="apellido materno"
+                        <p:inputText id="am" label="apellido materno"
                                      required="true" requiredMessage="Apellido materno, no puede estar vacio">
                             <f:validateRegex pattern="^[a-zA-Z0-9]+$" />
                         </p:inputText>
-                        <p:watermark for="a_materno" value="Introduce Apellido Materno" />
+                        <p:watermark for="am" value="Introduce Apellido Materno" />
 
                         <h:outputLabel value="Nombre" />
-                        <p:inputText id="nombre" label="nombre"
+                        <p:inputText id="nom" label="nombre"
                                      required="true" requiredMessage="Nombre, no puede estar vacio">
                             <f:validateRegex pattern="^[a-zA-Z0-9]+$" />
                         </p:inputText>
-                        <p:watermark for="nombre" value="Introduce Nombre" />
+                        <p:watermark for="nom" value="Introduce Nombre" />
 
                         <h:outputLabel value="Edad" />
                         <p:inputText id="edad" label="edad"
@@ -60,11 +60,11 @@
                         <p:watermark for="edad" value="Introduce Edad" />
 
                         <h:outputLabel value="Correo Electronico" />
-                        <p:inputText id="correo" label="correo"
+                        <p:inputText id="co" label="correo"
                                      required="true" requiredMessage="Correo electronico, no puede estar vacio">
                             <f:validateRegex pattern="^[a-zA-Z0-9]+$" />
                         </p:inputText>
-                        <p:watermark for="correo" value="Introduce Correo Electronico" />
+                        <p:watermark for="co" value="Introduce Correo Electronico" />
 
                         <p:photoCam widgetVar="pc" listener="#{photoCamView.oncapture}" update="photo" />
                         <p:commandButton type="button" value="Capture" onclick="PF('pc').capture()"/>

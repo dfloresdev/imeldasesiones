@@ -70,8 +70,9 @@ public class AltaBean {
         session = (HttpSession) ec.getSession(false);
         
         ////esto es para abir directamente con el url en la pestaña del navegador
-        if(session.getAttribute("Activado") == null)
+        if(session.getAttribute("activado") == null)
         {
+            System.out.println("te voy a sacar por que no estas activado");
             ec.redirect(ec.getRequestContextPath() + "/faces/index.xhtml");
         }
         
@@ -91,5 +92,8 @@ public class AltaBean {
         }
         
     }
+    
+    
+    
     
 }
